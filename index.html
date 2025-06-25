@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Diagnosa Tingkat Depresi - Metode Fuzzy Mamdani</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Landing Page -->
+    <div class="landing-page" id="landingPage">
+      <div class="landing-content">
+        <div class="brain-animation">
+          <i class="fas fa-brain"></i>
+        </div>
+        <h1>Selamat Datang di Sistem Diagnosa Tingkat Depresi</h1>
+        <p>Menggunakan Metode Fuzzy Mamdani untuk analisis yang akurat</p>
+        <button id="startBtn" class="btn btn-primary">
+          Mulai Diagnosa <i class="fas fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Application -->
+    <div class="container" id="mainContainer" style="display: none">
+      <header>
+        <div class="header-content">
+          <h1>Sistem Diagnosa Tingkat Depresi</h1>
+          <p>Menggunakan Metode Fuzzy Mamdani</p>
+        </div>
+        <div class="logo">
+          <i class="fas fa-brain"></i>
+        </div>
+      </header>
+
+      <div class="progress-container">
+        <div class="progress-stats">
+          <span id="questionCounter">Pertanyaan 1 dari 7</span>
+          <span id="progressPercent">14%</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress" id="progress"></div>
+        </div>
+      </div>
+
+      <div class="question-container" id="questionContainer">
+        <div class="question-card">
+          <div class="question-header">
+            <div class="question-number" id="questionCircle">1</div>
+            <h2 id="questionTitle">Suasana Hati</h2>
+          </div>
+          <div class="question-content">
+            <h3 id="questionText">
+              Seberapa sering Anda merasa sedih, putus asa, atau tertekan dalam
+              2 minggu terakhir?
+            </h3>
+            <p class="question-desc" id="questionDesc">
+              Skala: 0 = Tidak pernah, 10 = Selalu
+            </p>
+
+            <div class="input-group">
+              <div class="slider-container">
+                <input
+                  type="range"
+                  id="answerSlider"
+                  min="0"
+                  max="10"
+                  step="0.1"
+                  value="0"
+                  class="slider"
+                />
+                <div class="slider-thumb" id="sliderThumb">0</div>
+                <div class="scale-labels">
+                  <span>0</span>
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                  <span>5</span>
+                  <span>6</span>
+                  <span>7</span>
+                  <span>8</span>
+                  <span>9</span>
+                  <span>10</span>
+                </div>
+              </div>
+              <div class="numeric-input">
+                <label for="answerInput">Nilai:</label>
+                <input
+                  type="number"
+                  id="answerInput"
+                  min="0"
+                  max="10"
+                  step="0.1"
+                  placeholder="0-10"
+                />
+              </div>
+            </div>
+
+            <div class="scale-description">
+              <div class="scale-item">
+                <span class="scale-label">Rendah</span>
+                <div class="scale-bar low"></div>
+              </div>
+              <div class="scale-item">
+                <span class="scale-label">Sedang</span>
+                <div class="scale-bar medium"></div>
+              </div>
+              <div class="scale-item">
+                <span class="scale-label">Tinggi</span>
+                <div class="scale-bar high"></div>
+              </div>
+            </div>
+
+            <div class="button-group">
+              <button id="prevBtn" class="btn btn-secondary" disabled>
+                <i class="fas fa-arrow-left"></i> Sebelumnya
+              </button>
+              <button id="nextBtn" class="btn btn-primary">
+                Selanjutnya <i class="fas fa-arrow-right"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="question-info-card">
+          <div class="info-header">
+            <i class="fas fa-info-circle"></i>
+            <h3>Informasi</h3>
+          </div>
+          <div class="info-content">
+            <p id="questionInfo">
+              Pertanyaan ini membantu mengukur intensitas perasaan sedih atau
+              tertekan yang mungkin Anda alami. Cobalah untuk menjawab dengan
+              jujur berdasarkan pengalaman Anda dalam 2 minggu terakhir.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="result-container" id="resultContainer" style="display: none">
+        <div class="result-card">
+          <div class="result-header">
+            <h2>Hasil Diagnosa</h2>
+            <div class="result-date" id="resultDate"></div>
+          </div>
+
+          <div class="result-content">
+            <div class="diagnosis-result">
+              <div class="diagnosis-badge" id="diagnosisBadge">
+                <i class="fas fa-check-circle"></i>
+              </div>
+              <h3 id="diagnosisLevel">Normal</h3>
+              <p id="diagnosisDescription">
+                Tidak ada gejala signifikan yang mengindikasikan depresi.
+              </p>
+
+              <div class="score-meter">
+                <div class="meter">
+                  <div class="meter-fill" id="meterFill"></div>
+                </div>
+                <div class="confidence-score">
+                  <span>Nilai Defuzzifikasi: </span>
+                  <span id="confidenceScore">0</span>/100
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion" id="resultAccordion">
+              <div class="accordion-item">
+                <div
+                  class="accordion-header"
+                  onclick="toggleAccordion('responseSection')"
+                >
+                  <h4>Respon Anda</h4>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content" id="responseSection">
+                  <div class="accordion-content-inner">
+                    <div id="userResponses" class="user-responses"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item">
+                <div
+                  class="accordion-header"
+                  onclick="toggleAccordion('mamdaniSection')"
+                >
+                  <h4>Proses Fuzzy Mamdani</h4>
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="accordion-content" id="mamdaniSection">
+                  <div class="accordion-content-inner">
+                    <div class="mamdani-steps">
+                      <div class="step-section">
+                        <h5><i class="fas fa-filter"></i> 1. Fuzzifikasi</h5>
+                        <div
+                          id="fuzzificationResults"
+                          class="step-content"
+                        ></div>
+                      </div>
+
+                      <div class="step-section">
+                        <h5>
+                          <i class="fas fa-code-branch"></i> 2. Penerapan Fungsi
+                          Implikasi
+                        </h5>
+                        <div id="implicationResults" class="step-content"></div>
+                      </div>
+
+                      <div class="step-section">
+                        <h5>
+                          <i class="fas fa-object-group"></i> 3. Komposisi
+                          Aturan
+                        </h5>
+                        <div id="compositionResults" class="step-content"></div>
+                      </div>
+
+                      <div class="step-section">
+                        <h5>
+                          <i class="fas fa-calculator"></i> 4. Defuzzifikasi
+                        </h5>
+                        <div
+                          id="defuzzificationResults"
+                          class="step-content"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="recommendation-card">
+              <div class="recommendation-header">
+                <i class="fas fa-lightbulb"></i>
+                <h4>Rekomendasi Tindak Lanjut</h4>
+              </div>
+              <div class="recommendation-content">
+                <p id="recommendationText"></p>
+                <div id="recommendationList" class="recommendation-list"></div>
+              </div>
+            </div>
+
+            <div class="button-group result-buttons">
+              <button id="restartBtn" class="btn btn-secondary">
+                <i class="fas fa-redo"></i> Mulai Ulang
+              </button>
+              <button id="printBtn" class="btn btn-primary">
+                <i class="fas fa-print"></i> Cetak Hasil
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="disclaimer">
+          <i class="fas fa-exclamation-triangle"></i>
+          <p>
+            <strong>Disclaimer:</strong> Hasil ini hanya untuk screening awal
+            dan tidak menggantikan diagnosa profesional dari tenaga medis.
+          </p>
+        </div>
+        <div class="footer-info">
+          <p>Sistem Diagnosa Tingkat Depresi &copy; 2025</p>
+          <p>Menggunakan Metode Fuzzy Mamdani</p>
+        </div>
+      </footer>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
