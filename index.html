@@ -19,9 +19,14 @@
         </div>
         <h1>Selamat Datang di Sistem Diagnosa Tingkat Depresi</h1>
         <p>Menggunakan Metode Fuzzy Mamdani untuk analisis yang akurat</p>
-        <button id="startBtn" class="btn btn-primary">
-          Mulai Diagnosa <i class="fas fa-arrow-right"></i>
-        </button>
+        <div style="display: flex; flex-direction: column; gap: 16px; align-items: center;">
+          <button id="startBtn" class="btn btn-primary">
+            Mulai Diagnosa <i class="fas fa-arrow-right"></i>
+          </button>
+          <a href="edukasi.html" class="btn btn-secondary" style="font-size:1.1rem;">
+            <i class="fas fa-book-open"></i> Edukasi Kesehatan Mental
+          </a>
+        </div>
       </div>
     </div>
 
@@ -35,6 +40,10 @@
         <div class="logo">
           <i class="fas fa-brain"></i>
         </div>
+        <nav class="main-nav">
+          <a href="index.html" class="nav-link">Beranda</a>
+          <a href="edukasi.html" class="nav-link">Edukasi</a>
+        </nav>
       </header>
 
       <div class="progress-container">
@@ -260,12 +269,11 @@
       </div>
 
       <footer>
-        <div class="disclaimer">
-          <i class="fas fa-exclamation-triangle"></i>
-          <p>
-            <strong>Disclaimer:</strong> Hasil ini hanya untuk screening awal
-            dan tidak menggantikan diagnosa profesional dari tenaga medis.
-          </p>
+        <div class="disclaimer-card">
+          <div class="disclaimer-icon"><i class="fas fa-exclamation-triangle"></i></div>
+          <div class="disclaimer-text">
+            <strong>Disclaimer:</strong> Hasil ini hanya untuk screening awal dan tidak menggantikan diagnosa profesional dari tenaga medis.
+          </div>
         </div>
         <div class="footer-info">
           <p>Sistem Diagnosa Tingkat Depresi &copy; 2025</p>
