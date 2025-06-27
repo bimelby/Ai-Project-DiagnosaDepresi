@@ -273,9 +273,9 @@ body::before {
 }
 
 .btn-primary {
-  background: var(--gradient-primary);
-  color: #fff;
-  box-shadow: 0 4px 10px #b3e0fc80;
+  background: linear-gradient(135deg, #4facfe 0%, #b3e0fc 100%);
+  color: #fff !important;
+  text-shadow: 0 2px 8px #1456a0;
 }
 
 .btn-primary:hover {
@@ -284,8 +284,9 @@ body::before {
 
 .btn-secondary {
   background: #fff;
-  color: var(--primary-neon);
+  color: #4facfe !important;
   border: 2px solid #b3e0fc;
+  text-shadow: 0 2px 8px #fff;
 }
 
 .btn-secondary:hover {
@@ -293,7 +294,11 @@ body::before {
 }
 
 .btn:disabled {
-  opacity: 0.5;
+  color: #b3e0fc !important;
+  background: #fff;
+  border: 2px solid #b3e0fc;
+  text-shadow: none;
+  opacity: 0.7;
   cursor: not-allowed;
   transform: none !important;
 }
@@ -510,13 +515,14 @@ header p {
   50% { transform: scale(1.1); }
 }
 
-#questionTitle {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  background: var(--gradient-neon);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+#questionTitle, .question-header h2, .question-header h3, .question-header h4, .question-header h5 {
+  color: #1456a0 !important;
+  font-weight: 900 !important;
+  background: none !important;
+  -webkit-background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+  opacity: 1 !important;
+  text-shadow: 0 4px 16px #fff, 0 2px 8px #b3e0fc, 0 1px 0 #fff !important;
 }
 
 #questionText {
@@ -1286,4 +1292,28 @@ header p {
 /* Tambahan agar footer tidak mepet ke bawah layar */
 footer {
   padding-bottom: 16px;
+}
+
+h1, h2, h3, h4, h5, p, label, span, a, button, .btn, .result-header, .diagnosis-badge, .footer-info, .disclaimer-text, .recommendation-header, .recommendation-content, .scale-label, .question-desc, .result-date, .confidence-score, .accordion-header h4 {
+  color: #1456a0 !important;
+  text-shadow: 0 2px 8px #fff;
+}
+
+.landing-content h1, .landing-content p, .result-header h2, .diagnosis-badge, .btn, .btn-primary, .btn-secondary {
+  color: #1456a0 !important;
+  text-shadow: 0 4px 16px #fff, 0 2px 8px #b3e0fc, 0 1px 0 #fff;
+}
+
+input, select, textarea {
+  color: #1456a0 !important;
+  background: #fff;
+  border: 1px solid #b3e0fc;
+}
+
+input:disabled, button:disabled, .btn:disabled {
+  color: #b3e0fc !important;
+  background: #fff;
+  border: 2px solid #b3e0fc;
+  text-shadow: none;
+  opacity: 0.7;
 }
