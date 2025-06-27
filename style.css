@@ -5,42 +5,42 @@
 
 :root {
   /* Futuristic Color Palette */
-  --primary-neon: #00d4ff;
-  --primary-glow: #00d4ff40;
-  --secondary-neon: #ff0080;
-  --accent-cyan: #00ffff;
-  --accent-purple: #8b5cf6;
+  --primary-neon: #4facfe;
+  --primary-glow: #b3e0fc80;
+  --secondary-neon: #b3e0fc;
+  --accent-cyan: #00cfff;
+  --accent-purple: #b3e0fc;
   --accent-green: #10b981;
   --accent-orange: #f59e0b;
   --accent-red: #ef4444;
   
   /* Health Theme Colors */
-  --health-blue: #3b82f6;
+  --health-blue: #4facfe;
   --health-green: #10b981;
   --health-yellow: #f59e0b;
   --health-orange: #f97316;
   --health-red: #ef4444;
-  --health-purple: #8b5cf6;
+  --health-purple: #b3e0fc;
   
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  --gradient-health: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-  --gradient-futuristic: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-  --gradient-neon: linear-gradient(45deg, var(--primary-neon), var(--accent-cyan));
-  --gradient-dark: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --gradient-primary: linear-gradient(135deg, #e3f0fc 0%, #b3e0fc 100%);
+  --gradient-health: linear-gradient(135deg, #e3f0fc 0%, #b3e0fc 100%);
+  --gradient-futuristic: linear-gradient(135deg, #e3f0fc 0%, #b3e0fc 100%);
+  --gradient-neon: linear-gradient(45deg, #4facfe, #b3e0fc);
+  --gradient-dark: linear-gradient(135deg, #e3f0fc 0%, #b3e0fc 100%);
   
   /* Background Colors */
-  --bg-dark: #0f172a;
-  --bg-darker: #020617;
-  --bg-card: rgba(30, 41, 59, 0.8);
-  --bg-glass: rgba(255, 255, 255, 0.1);
-  --bg-overlay: rgba(0, 0, 0, 0.3);
+  --bg-dark: #e3f0fc;
+  --bg-darker: #b3e0fc;
+  --bg-card: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.7);
+  --bg-overlay: rgba(179, 224, 252, 0.3);
   
   /* Text Colors */
-  --text-primary: #f8fafc;
-  --text-secondary: #cbd5e1;
-  --text-muted: #64748b;
-  --text-neon: var(--primary-neon);
+  --text-primary: #1a237e;
+  --text-secondary: #1565c0;
+  --text-muted: #90a4ae;
+  --text-neon: #4facfe;
   
   /* Shadows & Effects */
   --shadow-neon: 0 0 20px var(--primary-glow);
@@ -110,10 +110,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+  background: radial-gradient(circle at 20% 80%, #b3e0fc 0%, transparent 50%), radial-gradient(circle at 80% 20%, #e3f0fc 0%, transparent 50%), radial-gradient(circle at 40% 40%, #4facfe 0%, transparent 50%);
   z-index: -1;
   animation: backgroundShift 20s ease-in-out infinite;
 }
@@ -131,7 +128,7 @@ body::before {
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: var(--gradient-dark);
+  background: var(--gradient-primary);
 }
 
 .landing-page::before {
@@ -217,32 +214,24 @@ body::before {
 
 .landing-content h1 {
   font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
+  font-weight: 900;
   margin-bottom: var(--space-lg);
-  background: var(--gradient-neon);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-  0% { filter: drop-shadow(0 0 10px var(--primary-glow)); }
-  100% { filter: drop-shadow(0 0 20px var(--primary-neon)); }
+  color: #1456a0;
+  text-shadow: 0 4px 16px #fff, 0 2px 8px #b3e0fc, 0 1px 0 #fff;
+  background: none;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
+  animation: none;
 }
 
 .landing-content p {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: var(--space-2xl);
-  color: var(--text-secondary);
-  opacity: 0;
-  animation: fadeInUp 1s ease-out 0.5s forwards;
-}
-
-@keyframes fadeInUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  color: #1456a0;
+  font-weight: 600;
+  opacity: 1;
+  text-shadow: 0 2px 8px #fff;
+  animation: none;
 }
 
 /* ===== BUTTONS ===== */
@@ -252,8 +241,8 @@ body::before {
   border: none;
   border-radius: var(--radius-lg);
   font-family: var(--font-primary);
-  font-weight: 600;
-  font-size: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: var(--transition-smooth);
   overflow: hidden;
@@ -263,6 +252,9 @@ body::before {
   gap: var(--space-sm);
   backdrop-filter: blur(10px);
   border: 1px solid var(--border-glow);
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 16px #b3e0fc80;
+  text-shadow: 0 1px 0 #fff, 0 2px 8px #b3e0fc;
 }
 
 .btn::before {
@@ -281,25 +273,23 @@ body::before {
 }
 
 .btn-primary {
-  background: var(--gradient-neon);
-  color: var(--bg-dark);
-  box-shadow: var(--shadow-neon);
+  background: var(--gradient-primary);
+  color: #fff;
+  box-shadow: 0 4px 10px #b3e0fc80;
 }
 
 .btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
+  filter: brightness(1.1);
 }
 
 .btn-secondary {
-  background: var(--bg-glass);
-  color: var(--text-primary);
-  border: var(--border-neon);
+  background: #fff;
+  color: var(--primary-neon);
+  border: 2px solid #b3e0fc;
 }
 
 .btn-secondary:hover {
-  background: var(--primary-glow);
-  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
 .btn:disabled {
@@ -335,7 +325,7 @@ body::before {
 
 /* ===== HEADER ===== */
 header {
-  background: var(--gradient-futuristic);
+  background: var(--gradient-primary);
   padding: var(--space-2xl);
   text-align: center;
   position: relative;
@@ -367,8 +357,8 @@ header h1 {
   font-size: clamp(2rem, 4vw, 3rem);
   font-weight: 800;
   margin-bottom: var(--space-sm);
-  color: var(--text-primary);
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  color: var(--primary-neon);
+  text-shadow: 0 0 20px #b3e0fc80;
 }
 
 header p {
@@ -453,7 +443,7 @@ header p {
 }
 
 .question-card {
-  background: var(--bg-glass);
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   backdrop-filter: blur(20px);
@@ -462,6 +452,8 @@ header p {
   animation: cardSlideIn 0.6s ease-out;
   position: relative;
   overflow: hidden;
+  color: var(--text-primary);
+  box-shadow: 0 4px 24px #b3e0fc40;
 }
 
 .question-card::before {
@@ -703,13 +695,15 @@ header p {
 
 /* ===== INFO CARD ===== */
 .question-info-card {
-  background: var(--bg-glass);
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-glow);
   height: fit-content;
   animation: infoSlideIn 0.6s ease-out 0.2s both;
+  color: var(--text-primary);
+  box-shadow: 0 4px 24px #b3e0fc40;
 }
 
 @keyframes infoSlideIn {
@@ -771,13 +765,15 @@ header p {
 }
 
 .result-card {
-  background: var(--bg-glass);
+  background: #fff;
   border-radius: var(--radius-lg);
   padding: var(--space-2xl);
   backdrop-filter: blur(20px);
   border: 1px solid var(--border-glow);
   position: relative;
   overflow: hidden;
+  color: var(--text-primary);
+  box-shadow: 0 4px 24px #b3e0fc40;
 }
 
 .result-header {
@@ -944,12 +940,14 @@ header p {
 }
 
 .accordion-item {
-  background: var(--bg-glass);
+  background: #fff;
   border-radius: var(--radius-md);
   margin-bottom: var(--space-md);
   border: 1px solid var(--border-glow);
   overflow: hidden;
   transition: var(--transition-smooth);
+  color: var(--text-primary);
+  box-shadow: 0 4px 24px #b3e0fc40;
 }
 
 .accordion-item:hover {

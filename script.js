@@ -724,6 +724,7 @@ document.addEventListener("DOMContentLoaded", () => {
   slider.addEventListener("input", () => {
     input.value = slider.value;
     updateSliderThumb(slider.value);
+    updateScaleBarHighlight(slider.value);
     validateInput();
   });
 
@@ -731,10 +732,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!isNaN(input.value) && input.value >= 0 && input.value <= 10) {
       slider.value = input.value;
       updateSliderThumb(input.value);
+      updateScaleBarHighlight(input.value);
     }
     validateInput();
   });
 });
+
+function getSliderLevelAndColor(value) {
+  // 6 levels: blue, green, yellow, orange, red, purple
+  if (value <= 1) {
+    return { level: 'level-1', color: 'var(--health-blue)' };
+  } else if (value <= 3) {
+    return { level: 'level-2', color: 'var(--health-green)' };
+  } else if (value <= 5) {
+    return { level: 'level-3', color: 'var(--health-yellow)' };
+  } else if (value <= 7) {
+    return { level: 'level-4', color: 'var(--health-orange)' };
+  } else if (value <= 9) {
+    return { level: 'level-5', color: 'var(--health-red)' };
+  } else {
+    return { level: 'level-6', color: 'var(--health-purple)' };
+  }
+}
 
 function updateSliderThumb(value) {
   const thumb = document.getElementById("sliderThumb");
@@ -745,18 +764,18 @@ function updateSliderThumb(value) {
   thumb.style.left = `${percent}%`;
   thumb.textContent = Number.parseFloat(value).toFixed(1);
 
-  // Update thumb color based on value
-  if (value <= 3) {
-    thumb.style.background = "var(--level-normal)";
-  } else if (value <= 5) {
-    thumb.style.background = "var(--level-ringan)";
-  } else if (value <= 7) {
-    thumb.style.background = "var(--level-menengah)";
-  } else if (value <= 8.5) {
-    thumb.style.background = "var(--level-berat)";
-  } else {
-    thumb.style.background = "var(--level-beresiko)";
-  }
+  // Update thumb color based on value (6 levels)
+  const { level, color } = getSliderLevelAndColor(value);
+  thumb.style.background = color;
+  slider.setAttribute('data-level', level);
+}
+
+function updateScaleBarHighlight(value) {
+  // Remove all active classes
+  document.querySelectorAll('.scale-bar').forEach(bar => bar.classList.remove('active'));
+  // 6-level highlight
+  const { level } = getSliderLevelAndColor(value);
+  document.querySelector(`.scale-bar.${level}`)?.classList.add('active');
 }
 
 function validateInput() {
@@ -810,11 +829,13 @@ function updateQuestion() {
     document.getElementById("answerInput").value = answers[currentQuestion];
     document.getElementById("answerSlider").value = answers[currentQuestion];
     updateSliderThumb(answers[currentQuestion]);
+    updateScaleBarHighlight(answers[currentQuestion]);
     validateInput();
   } else {
     document.getElementById("answerInput").value = "";
     document.getElementById("answerSlider").value = 0;
     updateSliderThumb(0);
+    updateScaleBarHighlight(0);
     document.getElementById("nextBtn").disabled = true;
   }
 
