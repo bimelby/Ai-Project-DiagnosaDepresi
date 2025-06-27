@@ -688,15 +688,15 @@ header p {
 }
 
 .scale-bar.low {
-  background: var(--gradient-neon);
+  background: linear-gradient(90deg, #4facfe 0%, #b3e0fc 100%);
 }
 
 .scale-bar.medium {
-  background: linear-gradient(90deg, var(--accent-orange), var(--accent-yellow));
+  background: linear-gradient(90deg, #ffe066 0%, #ffd700 100%);
 }
 
 .scale-bar.high {
-  background: linear-gradient(90deg, var(--accent-red), var(--secondary-neon));
+  background: linear-gradient(90deg, #ff5858 0%, #ff0000 100%);
 }
 
 /* ===== INFO CARD ===== */
