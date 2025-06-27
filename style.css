@@ -1,5 +1,4 @@
-/* ===== FUTURISTIC HEALTH DIAGNOSIS SYSTEM ===== */
-/* Modern CSS with Advanced Animations and Health Theme */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
@@ -940,49 +939,47 @@ header p {
   font-size: 1.1rem;
 }
 
-/* ===== ACCORDION ===== */
+/* Accordion - FIXED VERSION */
 .accordion {
-  margin-bottom: var(--space-xl);
+  margin-bottom: 30px;
 }
 
 .accordion-item {
-  background: #fff;
-  border-radius: var(--radius-md);
-  margin-bottom: var(--space-md);
-  border: 1px solid var(--border-glow);
+  margin-bottom: 15px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
-  transition: var(--transition-smooth);
-  color: var(--text-primary);
-  box-shadow: 0 4px 24px #b3e0fc40;
-}
-
-.accordion-item:hover {
-  border-color: var(--primary-neon);
-  box-shadow: var(--shadow-neon);
+  border: 1px solid #e0e0e0;
 }
 
 .accordion-header {
-  padding: var(--space-lg);
-  cursor: pointer;
+  padding: 15px 20px;
+  background: var(--bg-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: var(--transition-smooth);
+  cursor: pointer;
+  transition: background 0.3s;
+  border: none;
+  width: 100%;
+  text-align: left;
 }
 
 .accordion-header:hover {
-  background: var(--primary-glow);
+  background: #e9ecef;
 }
 
 .accordion-header h4 {
-  color: var(--text-primary);
+  font-size: 1.1em;
   font-weight: 600;
-  font-size: 1.1rem;
+  color: var(--text-primary);
+  margin: 0;
 }
 
 .accordion-header i {
-  color: var(--primary-neon);
-  transition: var(--transition-smooth);
+  transition: transform 0.3s ease;
+  color: var(--primary-color);
 }
 
 .accordion-item.active .accordion-header i {
@@ -992,16 +989,180 @@ header p {
 .accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: var(--transition-smooth);
+  transition: max-height 0.4s ease-out;
+  background: var(--white);
 }
 
 .accordion-item.active .accordion-content {
-  max-height: 1000px;
+  max-height: 2000px; /* Increased for more content */
 }
 
 .accordion-content-inner {
-  padding: var(--space-lg);
-  border-top: 1px solid var(--border-glow);
+  padding: 20px;
+}
+
+/* User Responses */
+.user-responses {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.response-item {
+  background: var(--bg-light);
+  padding: 15px;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+}
+
+.response-item h5 {
+  color: var(--primary-color);
+  margin-bottom: 10px;
+  font-size: 1em;
+}
+
+.response-item p {
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.response-value {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-top: 5px;
+}
+
+/* Mamdani Steps */
+.mamdani-steps {
+  margin-bottom: 25px;
+}
+
+.step-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--primary-color);
+}
+
+.step-section h5 {
+  color: var(--text-primary);
+  margin-bottom: 15px;
+  font-size: 1.1em;
+  display: flex;
+  align-items: center;
+}
+
+.step-section h5 i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.step-content {
+  margin-left: 10px;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.step-note {
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 0.85em;
+  border-left: 3px solid var(--primary-color);
+}
+
+.membership-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 10px 0;
+  font-size: 0.9em;
+}
+
+.membership-table th,
+.membership-table td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.membership-table th {
+  background-color: var(--bg-light);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.membership-table td {
+  color: var(--text-secondary);
+}
+
+.rule-item {
+  background: var(--bg-light);
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--primary-color);
+  font-size: 0.9em;
+}
+
+/* Recommendation Card */
+.recommendation-card {
+  background: var(--bg-light);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.recommendation-header {
+  background: var(--primary-gradient);
+  color: var(--white);
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.recommendation-header i {
+  font-size: 1.3em;
+  margin-right: 10px;
+}
+
+.recommendation-header h4 {
+  font-size: 1.2em;
+  font-weight: 600;
+}
+
+.recommendation-content {
+  padding: 20px;
+}
+
+.recommendation-content p {
+  color: var(--text-secondary);
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.recommendation-list {
+  margin-top: 15px;
+}
+
+.recommendation-item {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: flex-start;
+}
+
+.recommendation-item i {
+  color: var(--primary-color);
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.recommendation-item p {
+  margin: 0;
+  flex: 1;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
